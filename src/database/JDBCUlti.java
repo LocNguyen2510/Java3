@@ -10,11 +10,18 @@ public class JDBCUlti {
 		try {
 //Đăng kí MySQL Driver với DriverManager
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-String url=""
+//			các thông số
+			String url = "jdbc:mySQL://localhost:3307/ontap";
+			String username = "root";
+			String password = "";
+
+//			tạo kết nối
+			c = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return c;
 	}
 
