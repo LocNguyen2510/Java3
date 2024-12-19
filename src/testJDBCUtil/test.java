@@ -4,30 +4,34 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import database.JDBCUltil;
+import database.JDBCUtil;
 
 public class test {
 	public static void main(String[] args) {
 		try {
-//  bước 1: tạo kết nối
-			Connection connection = JDBCUltil.getConnection();
-//	Bước 2:	tạo ra đối tương statement
+			// Bước 1: Tạo kết nối
+			Connection connection = JDBCUtil.getConnection();
+
+			// Bước 2: Tạo ra đối tượng statement
 			Statement st = connection.createStatement();
-//	Bước 3: thực thi 1 câu lệnh sql
-			String sql = " INSERT INTO persons(last_name,first_name,gender,dob,income)"
-					+ "VALUES(\"Sang\",\"Phan\",\"Male\",\"2005-11-27\",12000000)";
+
+			// Bước 3: Thực thi một câu lệnh SQL
+			String sql = "INSERT INTO persons(last_name, first_name, gender, dob, income)"
+					+ "VALUES (\"Tran\", \"Thi\", \"C\", \"2000-09-10\", 10000000)";
+
 			int check = st.executeUpdate(sql);
-//	Bước 4: xử lí kết quả
+
+			// Bước 4: xử lý kết quả
 			System.out.println("Số dòng thay đổi: " + check);
 			if (check > 0) {
-				System.out.println("Thêm dữ liệu thành công");
+				System.out.println("Thêm dữ liệu thành công!");
 			} else {
-				System.out.println("Thêm dữ liệu thất bại");
+				System.out.println("Thêm dữ liệu thất bại!");
 			}
-//	bước 5: ngắt kết nối
-			JDBCUltil.closeConnection(connection);
+
+			// Bước 5: ngắt kết nối
+			JDBCUtil.closeConnection(connection);
 		} catch (SQLException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 

@@ -5,19 +5,22 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JDBCUltil {
+public class JDBCUtil {
 	public static Connection getConnection() {
 		Connection c = null;
+
 		try {
-//Đăng kí MySQL Driver với DriverManager
+			// Đăng ký MySQL Driver với DriverManager
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-//			các thông số
-			String url = "jdbc:mySQL://localhost:3307/ontap";
+
+			// Các thông số
+			String url = "jdbc:mySQL://localhost:3306/ontap";
 			String username = "root";
 			String password = "";
 
-//			tạo kết nối
+			// Tạo kết nối
 			c = DriverManager.getConnection(url, username, password);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,7 +35,6 @@ public class JDBCUltil {
 				c.close();
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -43,12 +45,9 @@ public class JDBCUltil {
 				DatabaseMetaData mtdt = c.getMetaData();
 				System.out.println(mtdt.getDatabaseProductName());
 				System.out.println(mtdt.getDatabaseProductVersion());
-
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
