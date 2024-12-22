@@ -5,7 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JDBCUtil {
+public class JDBCUtil1 {
 	public static Connection getConnection() {
 		Connection c = null;
 
@@ -14,7 +14,7 @@ public class JDBCUtil {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
 			// Các thông số
-			String url = "jdbc:mySQL://localhost:3307/ontap";
+			String url = "jdbc:mySQL://localhost:3307/nhasach";
 			String username = "root";
 			String password = "";
 
