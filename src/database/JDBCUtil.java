@@ -5,7 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JDBCUtil1 {
+public class JDBCUtil {
 	public static Connection getConnection() {
 		Connection c = null;
 

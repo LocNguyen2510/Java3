@@ -6,7 +6,8 @@ import java.sql.Statement;
 
 import database.JDBCUtil1;
 
-public class test {
+public class test1 {
+
 	public static void main(String[] args) {
 		try {
 			// Bước 1: Tạo kết nối
