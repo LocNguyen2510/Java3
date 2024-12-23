@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import model.KhachHang;
 
 public class KhachHangDAO implements DAOInterface<KhachHang> {
+	public static SachDAO getInstance() {
+		return new SachDAO();
+	}
 
 	@Override
 	public int add(KhachHang t) {
