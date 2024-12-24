@@ -1,13 +1,14 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import database.JDBCUtil1;
 import model.Sach;
 
 public class SachDAO implements DAOInterface<Sach> {
-	public static SachDAO getInstance() {
-		return new SachDAO();
-	}
 
 	@Override
 	public int add(Sach t) {
@@ -17,7 +18,19 @@ public class SachDAO implements DAOInterface<Sach> {
 
 	@Override
 	public int update(Sach t) {
-		// TODO Auto-generated method stub
+		try {
+			// Bước 1: tạo kết nối đến CSDL
+			Connection con = JDBCUtil1.getConnection();
+			// Buowcs 2: tạo ra đối tượng statement
+			Statement st = con.createStatement();
+			// Bước 3: thực thi câu lệnh SQL
+			String sql = "INSERT INTO sach(id, tenSach,giaBan,namXuatBan)" + "VALUES(" + t.getId() + ","
+					+ t.getTenSach() + "," + t.getGiaBan() + "," + t.getNamXuatBan() + ")";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return 0;
 	}
 
