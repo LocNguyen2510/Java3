@@ -9,28 +9,40 @@ import database.JDBCUtil1;
 import model.Sach;
 
 public class SachDAO implements DAOInterface<Sach> {
-
-	@Override
-	public int add(Sach t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public static SachDAO getInstance() {
+		return new SachDAO();
 	}
 
 	@Override
-	public int update(Sach t) {
+	public int add(Sach t) {
+		int ketQua = 0;
 		try {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil1.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
 			Statement st = con.createStatement();
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "INSERT INTO sach(id, tenSach,giaBan,namXuatBan)" + "VALUES(" + t.getId() + ","
-					+ t.getTenSach() + "," + t.getGiaBan() + "," + t.getNamXuatBan() + ")";
+			String sql = "INSERT INTO sach(id, tenSach,giaBan,namXuatBan)" + "VALUES('" + t.getId() + "','"
+					+ t.getTenSach() + "','" + t.getGiaBan() + "','" + t.getNamXuatBan() + "')";
+
+			ketQua = st.executeUpdate(sql);
+
+//			Bước 4:
+			System.out.println("Bạn đã thực thi: " + sql);
+			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
+
+//			Bước 5:
+			JDBCUtil1.closeConnection(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		return ketQua;
+	}
+
+	@Override
+	public int update(Sach t) {
 		return 0;
 	}
 
