@@ -1,7 +1,11 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import database.JDBCUtil1;
 import model.KhachHang;
 
 public class KhachHangDAO implements DAOInterface<KhachHang> {
@@ -11,7 +15,16 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 
 	@Override
 	public int add(KhachHang t) {
-		// TODO Auto-generated method stub
+		int ketQua = 0;
+		try {
+			Connection con = JDBCUtil1.getConnection();
+			Statement st = con.createStatement();
+			String sql= 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return 0;
 	}
 
