@@ -38,9 +38,7 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 		try {
 			Connection con = JDBCUtil1.getConnection();
 			Statement st = con.createStatement();
-			String sql = "INSERT INTO khachHang(id, hoVaTen, ngaySinh, diaChi)" + "VALUES('" + t.getId() + "','"
-					+ t.getHoVaTen() + "','" + t.getNgaySinh() + "','" + t.getDiaChi() + "')";
-			ketQua = st.executeUpdate(sql);
+			String sql = ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			JDBCUtil1.closeConnection(con);
 		} catch (SQLException e) {
