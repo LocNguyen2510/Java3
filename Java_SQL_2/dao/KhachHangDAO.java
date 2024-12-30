@@ -38,8 +38,11 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 		try {
 			Connection con = JDBCUtil1.getConnection();
 			Statement st = con.createStatement();
-			String sql = ketQua = st.executeUpdate(sql);
+			String sql = "UPDATE khachang" + "SET" + "hoVaTen '" + t.getHoVaTen() + "'" + "ngaySinh'" + t.getNgaySinh()
+					+ "'" + "diaChi'" + t.getDiaChi() + "WHERE id ='" + t.getId() + "'";
+			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
+			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
 			JDBCUtil1.closeConnection(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,8 +54,21 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 
 	@Override
 	public int delete(KhachHang t) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ketQua = 0;
+		try {
+			Connection con = JDBCUtil1.getConnection();
+			Statement st = con.createStatement();
+			String sql = "DELETE from khachhang" + "WHERE id='" + t.getId() + "'";
+			ketQua = st.executeUpdate(sql);
+			System.out.println("Chuỗi SQL  : " + sql);
+			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
+			JDBCUtil1.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ketQua;
 	}
 
 	@Override
