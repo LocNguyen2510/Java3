@@ -9,8 +9,8 @@ import database.JDBCUtil1;
 import model.KhachHang;
 
 public class KhachHangDAO implements DAOInterface<KhachHang> {
-	public static SachDAO getInstance() {
-		return new SachDAO();
+	public static KhachHangDAO getInstance() {
+		return new KhachHangDAO();
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 		try {
 			Connection con = JDBCUtil1.getConnection();
 			Statement st = con.createStatement();
-			String sql = "INSERT INTO khachHang(id, hoVaTen, ngaySinh, diaChi)" + "VALUES('" + t.getId() + "','"
+			String sql = "INSERT INTO sach(id, hoVaTen,ngaySinh,diaChi)" + "VALUES('" + t.getId() + "','"
 					+ t.getHoVaTen() + "','" + t.getNgaySinh() + "','" + t.getDiaChi() + "')";
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
@@ -38,8 +38,8 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 		try {
 			Connection con = JDBCUtil1.getConnection();
 			Statement st = con.createStatement();
-			String sql = "UPDATE khachang" + "SET" + "hoVaTen '" + t.getHoVaTen() + "'" + "ngaySinh'" + t.getNgaySinh()
-					+ "'" + "diaChi'" + t.getDiaChi() + "WHERE id ='" + t.getId() + "'";
+			String sql = "UPDATE khachhang" + " SET " + " hoVaTen='" + t.getHoVaTen() + "'" + ", ngaySinh='"
+					+ t.getNgaySinh() + "'" + ", diaChi='" + t.getDiaChi() + " WHERE id ='" + t.getId() + "\'";
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");

@@ -1,19 +1,17 @@
 package model;
 
-import java.sql.Date;
-
 public class KhachHang {
 
 	private String id;
 	private String hoVaTen;
-	private Date ngaySinh;
+	private int ngaySinh;
 	private String diaChi;
 
 	public KhachHang() {
 		super();
 	}
 
-	public KhachHang(String id, String hoVaTen, Date ngaySinh, String diaChi) {
+	public KhachHang(String id, String hoVaTen, int ngaySinh, String diaChi) {
 		super();
 		this.id = id;
 		this.hoVaTen = hoVaTen;
@@ -37,11 +35,11 @@ public class KhachHang {
 		this.hoVaTen = hoVaTen;
 	}
 
-	public Date getNgaySinh() {
+	public int getNgaySinh() {
 		return ngaySinh;
 	}
 
-	public void setNgaySinh(Date ngaySinh) {
+	public void setNgaySinh(int ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
 
