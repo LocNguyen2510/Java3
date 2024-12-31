@@ -19,8 +19,8 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 		try {
 			Connection con = JDBCUtil1.getConnection();
 			Statement st = con.createStatement();
-			String sql = "INSERT INTO sach(id, hoVaTen,ngaySinh,diaChi)" + "VALUES('" + t.getId() + "','"
-					+ t.getHoVaTen() + "','" + t.getNgaySinh() + "','" + t.getDiaChi() + "')";
+			String sql = "INSERT INTO khachhang(id, hoVaTen,ngaySinh,diaChi)" + "VALUES('" + t.getId() + "','"
+					+ t.getHoVaTen() + "'," + t.getNgaySinh() + ",'" + t.getDiaChi() + "')";
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			JDBCUtil1.closeConnection(con);
@@ -38,8 +38,8 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 		try {
 			Connection con = JDBCUtil1.getConnection();
 			Statement st = con.createStatement();
-			String sql = "UPDATE khachhang" + " SET " + " hoVaTen='" + t.getHoVaTen() + "'" + ", ngaySinh='"
-					+ t.getNgaySinh() + "'" + ", diaChi='" + t.getDiaChi() + " WHERE id ='" + t.getId() + "\'";
+			String sql = "UPDATE khachhang" + " SET " + " hoVaTen='" + t.getHoVaTen() + "'" + ", ngaySinh="
+					+ t.getNgaySinh() + ", diaChi='" + t.getDiaChi() + "'" + " WHERE id ='" + t.getId() + "\'";
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");

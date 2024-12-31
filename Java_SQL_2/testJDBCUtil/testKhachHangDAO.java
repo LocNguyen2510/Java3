@@ -9,7 +9,7 @@ public class testKhachHangDAO {
 			KhachHang khachhang = new KhachHang("KH" + i, "Ten", 2001, "Da Nang");
 			KhachHangDAO.getInstance().add(khachhang);
 		}
-		KhachHang khachhang1 = new KhachHang("KH3", "DinhLoc", 2002, "Da Nang");
-		KhachHangDAO.getInstance().update(khachhang1);
+		// KhachHang khachhang1 = new KhachHang("KH3", "DinhLoc", 2002, "Da Nang");
+		// KhachHangDAO.getInstance().update(khachhang1);
 	}
 }
