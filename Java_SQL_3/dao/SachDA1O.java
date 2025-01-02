@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -101,8 +102,36 @@ public class SachDA1O implements DAOInterface1<Sach> {
 
 	@Override
 	public ArrayList<Sach> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Sach> ketQua = new ArrayList<Sach>();
+		try {
+			// Bước 1: tạo kết nối đến CSDL
+			Connection con = JDBCUtil1.getConnection();
+			// Buowcs 2: tạo ra đối tượng statement
+			Statement st = con.createStatement();
+			// Bước 3: thực thi câu lệnh SQL
+			String sql = "SELECT * FROM sach";
+			System.out.println(sql);
+
+			ResultSet rs = st.executeQuery(sql);
+
+//			Bước 4:
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String tenSach = rs.getString("tenSach");
+				float giaBan = rs.getFloat("giaBan");
+				int namXuatBan = rs.getInt("namXuatBan");
+
+				Sach sach = new Sach(id, tenSach, giaBan, namXuatBan);
+				ketQua.add(sach);
+			}
+//			Bước 5:
+			JDBCUtil1.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ketQua;
 	}
 
 	@Override
