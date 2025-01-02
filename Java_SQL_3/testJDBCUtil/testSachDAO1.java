@@ -8,6 +8,9 @@ import model.Sach;
 public class testSachDAO1 {
 	public static void main(String[] args) {
 		ArrayList<Sach> list = SachDAO.getInstance().selectAll();
+		for (Sach sach : list) {
+			System.out.println(sach.toString());
+		}
 ////		Test insert: 
 ////		Sach sach1 = new Sach("LTJV", "Lập trình Java", 50000, 2024);
 ////		Sach sach2 = new Sach("LTC", "Lập trình C", 75000, 2025);
