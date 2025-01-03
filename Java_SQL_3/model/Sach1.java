@@ -51,4 +51,9 @@ public class Sach1 {
 		this.namXuatBan = namXuatBan;
 	}
 
+	@Override
+	public String toString() {
+		return "Sach1 [id=" + id + ", tenSach=" + tenSach + ", giaBan=" + giaBan + ", namXuatBan=" + namXuatBan + "]";
+	}
+
 }
