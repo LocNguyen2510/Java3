@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -73,8 +74,20 @@ public class KhachHangDAO1 implements DAOInterface1<KhachHang1> {
 
 	@Override
 	public ArrayList<KhachHang1> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<KhachHang1> ketQua = new ArrayList<>();
+		try {
+			Connection con = JDBCUtil2.getConnection();
+			Statement st = con.createStatement();
+			String sql = "SELECT * FROM sach";
+			ResultSet rs = st.executeQuery(sql);
+
+			JDBCUtil2.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ketQua;
 	}
 
 	@Override

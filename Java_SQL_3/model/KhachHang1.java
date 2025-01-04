@@ -23,6 +23,11 @@ public class KhachHang1 {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return "KhachHang1 [id=" + id + ", hoVaTen=" + hoVaTen + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + "]";
+	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
