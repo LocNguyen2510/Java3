@@ -80,7 +80,14 @@ public class KhachHangDAO1 implements DAOInterface1<KhachHang1> {
 			Statement st = con.createStatement();
 			String sql = "SELECT * FROM sach";
 			ResultSet rs = st.executeQuery(sql);
-
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String hoVaTen = rs.getString("hoVaTen");
+				int ngaySinh = rs.getInt("ngaySinh");
+				String diaChi = rs.getString("diaChi");
+				KhachHang1 kh = new KhachHang1(id, hoVaTen, ngaySinh, diaChi);
+				ketQua.add(kh);
+			}
 			JDBCUtil2.closeConnection(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
