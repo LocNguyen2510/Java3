@@ -59,7 +59,7 @@ public class KhachHangDAO1 implements DAOInterface1<KhachHang1> {
 		try {
 			Connection con = JDBCUtil2.getConnection();
 			Statement st = con.createStatement();
-			String sql = "DELETE from khachhang" + "WHERE id='" + t.getId() + "'";
+			String sql = "DELETE from khachhang" + " WHERE id='" + t.getId() + "'";
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
@@ -74,11 +74,11 @@ public class KhachHangDAO1 implements DAOInterface1<KhachHang1> {
 
 	@Override
 	public ArrayList<KhachHang1> selectAll() {
-		ArrayList<KhachHang1> ketQua = new ArrayList<>();
+		ArrayList<KhachHang1> ketQua = new ArrayList<KhachHang1>();
 		try {
 			Connection con = JDBCUtil2.getConnection();
 			Statement st = con.createStatement();
-			String sql = "SELECT * FROM sach";
+			String sql = "SELECT * FROM khachhang";
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				String id = rs.getString("id");
