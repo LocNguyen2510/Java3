@@ -99,8 +99,24 @@ public class KhachHangDAO1 implements DAOInterface1<KhachHang1> {
 
 	@Override
 	public KhachHang1 selectById(KhachHang1 t) {
-		// TODO Auto-generated method stub
-		return null;
+		KhachHang1 ketQua = null;
+		try {
+			Connection con = JDBCUtil2.getConnection();
+			Statement st = con.createStatement();
+			String sql = "SELECT * from khachhang where id='" + t.getId() + "'";
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String hoVaTen = rs.getString("hoVaTen");
+				int ngaySinh = rs.getInt("ngaySinh");
+				String diaChi = rs.getString("diaChi");
+				ketQua = new KhachHang1(id, hoVaTen, ngaySinh, diaChi);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketQua;
 	}
 
 	@Override
