@@ -121,8 +121,25 @@ public class KhachHangDAO1 implements DAOInterface1<KhachHang1> {
 
 	@Override
 	public ArrayList<KhachHang1> selectByCondition(String condition) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<KhachHang1> ketQua = new ArrayList<KhachHang1>();
+		try {
+			Connection con = JDBCUtil2.getConnection();
+			Statement st = con.createStatement();
+			String sql = "SELECT * from khachhang where" + condition;
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String hoVaTen = rs.getString("hoVaTen");
+				int ngaySinh = rs.getInt("ngaySinh");
+				String diaChi = rs.getString("diaChi");
+				KhachHang1 kh = new KhachHang1(id, hoVaTen, ngaySinh, diaChi);
+				ketQua.add(kh);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketQua;
 	}
 
 }

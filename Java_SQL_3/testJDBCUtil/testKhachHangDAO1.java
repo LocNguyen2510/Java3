@@ -16,6 +16,10 @@ public class testKhachHangDAO1 {
 		find.setId("" + 3);
 		KhachHang1 kh = KhachHangDAO1.getInstance().selectById(find);
 		System.out.println(kh);
+		System.out.println("-----------------------------------------");
+		ArrayList<KhachHang1> list1 = KhachHangDAO1.getInstance().selectByCondition(" ngaySinh=2001");
+		for (KhachHang1 kh1 : list1) {
+			System.out.println(kh1.toString());
 //		for (int i = 0; i < 20; i++) {
 //			KhachHang1 khachhang = new KhachHang1("KH" + i, "Ten", 2001, "Da Nang");
 //			KhachHangDAO1.getInstance().delete(khachhang);
@@ -26,5 +30,6 @@ public class testKhachHangDAO1 {
 //		}
 //		KhachHang1 khachhang1 = new KhachHang1("" + 3, "DinhLoc", 2002, "Da Nang");
 //		KhachHangDAO1.getInstance().update(khachhang1);
+		}
 	}
 }
