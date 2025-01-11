@@ -13,7 +13,7 @@ public class testUser2 {
 		for (int i = 0; i < 20; i++) {
 			User2 user = new User2("User" + i, "123123", "Nguyen Locj");
 			UserDAO2.getInstance().add(user);
-//		}
+
 		}
 	}
 }
