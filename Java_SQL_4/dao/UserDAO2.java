@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,13 +21,15 @@ public class UserDAO2 implements DAOInterface2<User2> {
 		try {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
-			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
-			// Bước 3: thực thi câu lệnh SQL
-			String sql = "INSERT INTO User(username, password,hovaten)" + "VALUES('" + t.getUsername() + "','"
-					+ t.getPassword() + "','" + t.getHovaten() + "')";
+			String sql = "INSERT INTO User(username, password,hovaten)" + "VALUES(?, ?, ?";
 
-			ketQua = st.executeUpdate(sql);
+			// Buowcs 2: tạo ra đối tượng statement
+			PreparedStatement pst = con.prepareStatement(sql);
+			// Bước 3: thực thi câu lệnh SQL
+			pst.setString(1, t.getUsername());
+			pst.setString(2, t.getPassword());
+			pst.setString(3, t.getHovaten());
+			ketQua = pst.executeUpdate(sql);
 
 //			Bước 4:
 			System.out.println("Bạn đã thực thi: " + sql);
