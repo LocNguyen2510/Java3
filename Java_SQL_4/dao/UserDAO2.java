@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.JDBCUtil3;
@@ -29,7 +28,7 @@ public class UserDAO2 implements DAOInterface2<User2> {
 			pst.setString(1, t.getUsername());
 			pst.setString(2, t.getPassword());
 			pst.setString(3, t.getHovaten());
-			ketQua = pst.executeUpdate(sql);
+			ketQua = pst.executeUpdate();
 
 //			Bước 4:
 			System.out.println("Bạn đã thực thi: " + sql);
@@ -52,13 +51,15 @@ public class UserDAO2 implements DAOInterface2<User2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
-			// Bước 3: thực thi câu lệnh SQL
-			String sql = "UPDATE User" + " SET " + " password='" + t.getPassword() + "'" + ", hovaten='"
-					+ t.getHovaten() + " WHERE username='" + t.getUsername() + "\'";
-			System.out.println(sql);
 
-			ketQua = st.executeUpdate(sql);
+			// Bước 3: thực thi câu lệnh SQL
+			String sql = "UPDATE User" + " SET " + " password= ?" + ", hovaten= ?" + " WHERE username= ?";
+			System.out.println(sql);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getPassword());
+			st.setString(2, t.getHovaten());
+			st.setString(3, t.getUsername());
+			ketQua = st.executeUpdate();
 
 //			Bước 4:
 			System.out.println("Bạn đã thực thi: " + sql);
@@ -81,12 +82,14 @@ public class UserDAO2 implements DAOInterface2<User2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
+
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "DELETE from User" + " WHERE username='" + t.getUsername() + "'";
+			String sql = "DELETE from User" + " WHERE username=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getUsername());
 			System.out.println(sql);
 
-			ketQua = st.executeUpdate(sql);
+			ketQua = st.executeUpdate();
 
 //			Bước 4:
 			System.out.println("Bạn đã thực thi: " + sql);
@@ -110,12 +113,12 @@ public class UserDAO2 implements DAOInterface2<User2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
 			// Bước 3: thực thi câu lệnh SQL
 			String sql = "SELECT * FROM User";
+			PreparedStatement st = con.prepareStatement(sql);
 			System.out.println(sql);
 
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = st.executeQuery();
 
 //			Bước 4:
 			while (rs.next()) {
@@ -143,12 +146,13 @@ public class UserDAO2 implements DAOInterface2<User2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "SELECT * FROM User where username='" + t.getUsername() + "'";
+			String sql = "SELECT * FROM User where username=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getUsername());
 			System.out.println(sql);
 
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = st.executeQuery();
 
 //			Bước 4:
 			while (rs.next()) {
@@ -176,12 +180,13 @@ public class UserDAO2 implements DAOInterface2<User2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "SELECT * FROM User WHERE" + condition;
+			String sql = "SELECT * FROM User WHERE" + "?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, condition);
 			System.out.println(sql);
 
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = st.executeQuery();
 
 //			Bước 4:
 			while (rs.next()) {
