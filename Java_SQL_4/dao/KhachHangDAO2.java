@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,9 +20,13 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 		int ketQua = 0;
 		try {
 			Connection con = JDBCUtil3.getConnection();
-			Statement st = con.createStatement();
-			String sql = "INSERT INTO khachhang(id, hoVaTen,ngaySinh,diaChi)" + "VALUES('" + t.getId() + "','"
-					+ t.getHoVaTen() + "'," + t.getNgaySinh() + ",'" + t.getDiaChi() + "')";
+
+			String sql = "INSERT INTO khachhang(id, hoVaTen,ngaySinh,diaChi)" + "VALUES(?, ?, ?, ?)";
+			PreparedStatement st = con.prepareStatement(null);
+			st.setString(1, t.getId());
+			st.setString(2, t.getHoVaTen());
+			st.setInt(3, t.getNgaySinh());
+			st.setString(4, t.getDiaChi());
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			JDBCUtil3.closeConnection(con);

@@ -20,7 +20,7 @@ public class UserDAO2 implements DAOInterface2<User2> {
 		try {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
-			String sql = "INSERT INTO User(username, password,hovaten)" + "VALUES(?, ?, ?";
+			String sql = "INSERT INTO User(username, password,hovaten)" + "VALUES(?, ?, ?)";
 
 			// Buowcs 2: tạo ra đối tượng statement
 			PreparedStatement pst = con.prepareStatement(sql);
