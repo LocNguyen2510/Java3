@@ -149,7 +149,7 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 				ketQua.add(kh);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return ketQua;
