@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.JDBCUtil3;
@@ -22,12 +21,12 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 			Connection con = JDBCUtil3.getConnection();
 
 			String sql = "INSERT INTO khachhang(id, hoVaTen,ngaySinh,diaChi)" + "VALUES(?, ?, ?, ?)";
-			PreparedStatement st = con.prepareStatement(null);
+			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, t.getId());
 			st.setString(2, t.getHoVaTen());
 			st.setInt(3, t.getNgaySinh());
 			st.setString(4, t.getDiaChi());
-			ketQua = st.executeUpdate(sql);
+			ketQua = st.executeUpdate();
 			System.out.println("Chuỗi SQL  : " + sql);
 			JDBCUtil3.closeConnection(con);
 		} catch (SQLException e) {
@@ -43,10 +42,14 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 		int ketQua = 0;
 		try {
 			Connection con = JDBCUtil3.getConnection();
-			Statement st = con.createStatement();
-			String sql = "UPDATE khachhang" + " SET " + " hoVaTen='" + t.getHoVaTen() + "'" + ", ngaySinh="
-					+ t.getNgaySinh() + ", diaChi='" + t.getDiaChi() + "'" + " WHERE id ='" + t.getId() + "\'";
-			ketQua = st.executeUpdate(sql);
+
+			String sql = "UPDATE khachhang" + " SET " + " hoVaTen=?" + ", ngaySinh=?" + ", diaChi=?" + " WHERE id =?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getHoVaTen());
+			st.setInt(2, t.getNgaySinh());
+			st.setString(3, t.getDiaChi());
+			st.setString(3, t.getId());
+			ketQua = st.executeUpdate();
 			System.out.println("Chuỗi SQL  : " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
 			JDBCUtil3.closeConnection(con);
@@ -63,8 +66,9 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 		int ketQua = 0;
 		try {
 			Connection con = JDBCUtil3.getConnection();
-			Statement st = con.createStatement();
-			String sql = "DELETE from khachhang" + " WHERE id='" + t.getId() + "'";
+			String sql = "DELETE from khachhang" + " WHERE id=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getId());
 			ketQua = st.executeUpdate(sql);
 			System.out.println("Chuỗi SQL  : " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
@@ -82,8 +86,10 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 		ArrayList<KhachHang2> ketQua = new ArrayList<KhachHang2>();
 		try {
 			Connection con = JDBCUtil3.getConnection();
-			Statement st = con.createStatement();
+
 			String sql = "SELECT * FROM khachhang";
+			PreparedStatement st = con.prepareStatement(sql);
+
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				String id = rs.getString("id");
@@ -107,8 +113,9 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 		KhachHang2 ketQua = null;
 		try {
 			Connection con = JDBCUtil3.getConnection();
-			Statement st = con.createStatement();
-			String sql = "SELECT * from khachhang where id='" + t.getId() + "'";
+			String sql = "SELECT * from khachhang where id=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getId());
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				String id = rs.getString("id");
@@ -129,8 +136,9 @@ public class KhachHangDAO2 implements DAOInterface2<KhachHang2> {
 		ArrayList<KhachHang2> ketQua = new ArrayList<KhachHang2>();
 		try {
 			Connection con = JDBCUtil3.getConnection();
-			Statement st = con.createStatement();
-			String sql = "SELECT * from khachhang where" + condition;
+			String sql = "SELECT * from khachhang where" + "?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, condition);
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				String id = rs.getString("id");
