@@ -14,10 +14,10 @@ public class testUser2 {
 		User2 u_find2 = new User2("x\' or 1=1; -- ", "", "");
 		User2 u_result = UserDAO2.getInstance().selectById(u_find2);
 		System.out.println(u_result);
-//		for (int i = 0; i < 20; i++) {
-//			User2 user = new User2("User" + i, "123123", "Nguyen Locj");
-//			UserDAO2.getInstance().add(user);
-//
-//		}
+		for (int i = 0; i < 20; i++) {
+			User2 user = new User2("User" + i, "123123", "Nguyen Locj");
+			UserDAO2.getInstance().add(user);
+
+		}
 	}
 }
