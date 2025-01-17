@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,11 +22,14 @@ public class SachDAO2 implements DAOInterface2<Sach2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
-			// Bước 3: thực thi câu lệnh SQL
-			String sql = "INSERT INTO sach(id, tenSach,giaBan,namXuatBan)" + "VALUES('" + t.getId() + "','"
-					+ t.getTenSach() + "','" + t.getGiaBan() + "','" + t.getNamXuatBan() + "')";
 
+			// Bước 3: thực thi câu lệnh SQL
+			String sql = "INSERT INTO sach(id, tenSach,giaBan,namXuatBan)" + "VALUES(?, ?, ?, ?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getId());
+			st.setString(2, t.getTenSach());
+			st.setFloat(3, t.getGiaBan());
+			st.setInt(4, t.getNamXuatBan());
 			ketQua = st.executeUpdate(sql);
 
 //			Bước 4:
