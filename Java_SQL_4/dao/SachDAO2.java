@@ -53,14 +53,14 @@ public class SachDAO2 implements DAOInterface2<Sach2> {
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil3.getConnection();
 			// Buowcs 2: tạo ra đối tượng statement
-			Statement st = con.createStatement();
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "UPDATE sach" + " SET " + " tenSach='" + t.getTenSach() + "'" + ", giaBan=" + t.getGiaBan()
-					+ ", namXuatBan=" + t.getNamXuatBan() + " WHERE id='" + t.getId() + "\'";
-			System.out.println(sql);
-
+			String sql = "UPDATE sach" + " SET " + " tenSach=?" + ", giaBan=? " + ", namXuatBan=? " + " WHERE id=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getTenSach());
+			st.setFloat(2, t.getGiaBan());
+			st.setInt(3, t.getNamXuatBan());
+			st.setString(4, t.getId());
 			ketQua = st.executeUpdate(sql);
-
 //			Bước 4:
 			System.out.println("Bạn đã thực thi: " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi !!");
